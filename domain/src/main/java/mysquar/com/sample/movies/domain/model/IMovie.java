@@ -5,5 +5,6 @@ package mysquar.com.sample.movies.domain.model;
  */
 
 public interface IMovie {
-
+    String getTitle();
+    String getDescription();
 }

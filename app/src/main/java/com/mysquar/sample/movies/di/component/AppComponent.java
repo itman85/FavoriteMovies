@@ -1,11 +1,11 @@
 package com.mysquar.sample.movies.di.component;
 
 import com.mysquar.sample.movies.di.AppModule;
+import com.mysquar.sample.movies.ui.movies.MovieListViewModel;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
-import mysquar.com.sample.movies.domain.usecase.RetrieveMoviesListUC;
 
 /**
  * Created by phannguyen on 5/23/17.
@@ -15,7 +15,9 @@ import mysquar.com.sample.movies.domain.usecase.RetrieveMoviesListUC;
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
-    RetrieveMoviesListUC getRetrieveMoviesListUC();
+    //RetrieveMoviesListUC getRetrieveMoviesListUC();
+
+    void inject(MovieListViewModel viewModel);
 
 //    void inject(MoviesListActivity activity);
 

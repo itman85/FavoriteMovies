@@ -58,4 +58,13 @@ public class MovieModel implements IMovie {
     public Double voteAverage;
 
 
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getDescription() {
+        return overview;
+    }
 }

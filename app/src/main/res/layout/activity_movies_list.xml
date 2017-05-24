@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mysquar.sample.movies.ui.movies.MovieListViewModel" />
+    </data>
+
+<LinearLayout
     android:id="@+id/activity_movies_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +17,21 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mysquar.sample.movies.MoviesListActivity">
+    android:orientation="vertical"
+    tools:context="com.mysquar.sample.movies.ui.movies.MoviesListActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:text="This is my favorite movie" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp" />
+
+</LinearLayout>
+</layout>
