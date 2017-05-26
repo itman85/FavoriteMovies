@@ -1,6 +1,9 @@
 package com.mysquar.sample.movies.di.component;
 
+import android.content.Context;
+
 import com.mysquar.sample.movies.di.AppModule;
+import com.mysquar.sample.movies.di.ApplicationContext;
 import com.mysquar.sample.movies.ui.movies.MovieListViewModel;
 
 import javax.inject.Singleton;
@@ -21,6 +24,6 @@ public interface AppComponent {
 
 //    void inject(MoviesListActivity activity);
 
-    //@ApplicationContext
-    //Context getAppContext();
+    @ApplicationContext
+    Context getAppContext();
 }

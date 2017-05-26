@@ -6,6 +6,7 @@ import mysquar.com.sample.movies.domain.model.IMovie;
 import mysquar.com.sample.movies.domain.service.IApiMovieService;
 import rx.Observable;
 
+
 /**
  * Created by phannguyen on 5/23/17.
  */

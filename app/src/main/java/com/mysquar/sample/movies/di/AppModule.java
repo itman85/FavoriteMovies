@@ -1,8 +1,13 @@
 package com.mysquar.sample.movies.di;
 
+import android.content.Context;
+
 import com.mysquar.sample.movies.MyApp;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
+import dagger.Provides;
 import mysquar.com.sample.movies.data.apiws.di.DataModule;
 import mysquar.com.sample.movies.domain.di.DomainModule;
 
@@ -17,10 +22,10 @@ public class AppModule {
         mApp = app;
     }
 
-   /*@Provides
+    @Provides
     @Singleton
     @ApplicationContext
     public Context provideAppContext() {
         return mApp;
-    }*/
+    }
 }

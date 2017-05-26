@@ -10,7 +10,9 @@ import dagger.Module;
 import dagger.Provides;
 import mysquar.com.sample.movies.data.apiws.ApiMovieServiceImpl;
 import mysquar.com.sample.movies.data.apiws.IMovieApiWS;
+import mysquar.com.sample.movies.data.apiws.LocalServiceImpl;
 import mysquar.com.sample.movies.domain.service.IApiMovieService;
+import mysquar.com.sample.movies.domain.service.ILocalService;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -68,4 +70,11 @@ public class DataModule {
     public Gson provideGson() {
         return new Gson();
     }
+
+    @Provides
+    @Singleton
+    public ILocalService provideLocalService(){
+        return  new LocalServiceImpl();
+    }
+
 }

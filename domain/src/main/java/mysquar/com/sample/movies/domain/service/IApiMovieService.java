@@ -5,6 +5,7 @@ import java.util.List;
 import mysquar.com.sample.movies.domain.model.IMovie;
 import rx.Observable;
 
+
 /**
  * Created by phannguyen on 5/23/17.
  */

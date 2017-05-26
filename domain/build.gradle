@@ -36,12 +36,16 @@ dependencies {
     //Dragger 2
     compile 'com.google.dagger:dagger:'+rootProject.daggerVersion;
     annotationProcessor "com.google.dagger:dagger-compiler:"+rootProject.daggerVersion;
+
     compile 'javax.inject:javax.inject:1'
 
     //RxJava
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.2.9'
+    //compile group: 'io.reactivex.rxjava2', name: 'rxandroid', version: '2.0.1'
+    //compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.0'
 
     //GSON
     compile 'com.google.code.gson:gson:2.6.2'
+    testCompile rootProject.ext.dependencies["org.mockito:mockito-core"]
 }

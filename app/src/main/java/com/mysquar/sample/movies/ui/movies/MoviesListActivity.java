@@ -20,10 +20,8 @@ import me.henrytao.mvvmlifecycle.recyclerview.RecyclerViewBindingViewHolder;
 import me.henrytao.mvvmlifecycle.rx.UnsubscribeLifeCycle;
 import mysquar.com.sample.movies.domain.model.IMovie;
 
-public class MoviesListActivity extends BaseActivity {
+public class MoviesListActivity extends BaseActivity<ActivityMoviesListBinding> {
 
-
-  private  ActivityMoviesListBinding mBinding;
   private MovieListViewModel mViewModel;
   private Adapter mAdapter;
 

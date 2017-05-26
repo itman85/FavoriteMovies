@@ -6,6 +6,7 @@ android {
     enabled = true
   }
 
+
   compileOptions {
     sourceCompatibility rootProject.ext.java.sourceCompatibility
     targetCompatibility rootProject.ext.java.targetCompatibility
@@ -28,6 +29,7 @@ android {
       proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
     }
   }
+    buildToolsVersion '25.0.0'
 }
 
 retrolambda {

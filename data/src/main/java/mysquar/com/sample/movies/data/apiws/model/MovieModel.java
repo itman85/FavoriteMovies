@@ -67,4 +67,21 @@ public class MovieModel implements IMovie {
     public String getDescription() {
         return overview;
     }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+
+    public MovieModel(String overview, String title) {
+        this.overview = overview;
+        this.title = title;
+    }
+
+    public MovieModel(String overview, Integer id, String title) {
+        this.overview = overview;
+        this.id = id;
+        this.title = title;
+    }
 }

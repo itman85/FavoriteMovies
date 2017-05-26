@@ -22,10 +22,11 @@ import mysquar.com.sample.movies.data.apiws.BaseResponse;
 import mysquar.com.sample.movies.data.apiws.exception.ApiException;
 import rx.Observable;
 
+
 /**
  * Created by SILONG on 5/2/16.
  */
-public class BaseApiTransformer<T> implements Observable.Transformer<BaseResponse<T>, T> {
+public class BaseApiTransformer<T> implements rx.Observable.Transformer<BaseResponse<T>, T> {
 
   @Override
   public Observable<T> call(Observable<BaseResponse<T>> baseResponseObservable) {

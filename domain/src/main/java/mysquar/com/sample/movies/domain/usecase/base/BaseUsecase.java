@@ -1,5 +1,6 @@
 package mysquar.com.sample.movies.domain.usecase.base;
 
+
 import rx.Observable;
 
 /**
