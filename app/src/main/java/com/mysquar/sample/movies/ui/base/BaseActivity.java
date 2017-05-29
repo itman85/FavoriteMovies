@@ -2,6 +2,9 @@ package com.mysquar.sample.movies.ui.base;
 
 import android.databinding.ViewDataBinding;
 
+import com.mysquar.sample.movies.MyApp;
+import com.mysquar.sample.movies.di.component.AppComponent;
+
 import me.henrytao.mvvmlifecycle.MVVMActivity;
 
 /**
@@ -11,5 +14,7 @@ import me.henrytao.mvvmlifecycle.MVVMActivity;
 public abstract class BaseActivity<T extends ViewDataBinding> extends MVVMActivity {
     protected T mBinding;
 
-
+    public AppComponent getAppComponent() {
+        return ((MyApp) getApplication()).getAppComponent();
+    }
 }

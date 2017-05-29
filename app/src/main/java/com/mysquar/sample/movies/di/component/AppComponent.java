@@ -1,10 +1,13 @@
 package com.mysquar.sample.movies.di.component;
 
-import android.content.Context;
-
 import com.mysquar.sample.movies.di.AppModule;
 import com.mysquar.sample.movies.di.ApplicationContext;
-import com.mysquar.sample.movies.ui.movies.MovieListViewModel;
+import com.mysquar.sample.movies.ui.detail.di.DetailMovieComponent;
+import com.mysquar.sample.movies.ui.detail.di.DetailMovieModule;
+import com.mysquar.sample.movies.ui.movies.di.MoviesListComponent;
+import com.mysquar.sample.movies.ui.movies.di.MoviesListModule;
+
+import android.content.Context;
 
 import javax.inject.Singleton;
 
@@ -18,12 +21,19 @@ import dagger.Component;
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
-    //RetrieveMoviesListUC getRetrieveMoviesListUC();
+  //RetrieveMoviesListUC getRetrieveMoviesListUC();
 
-    void inject(MovieListViewModel viewModel);
+//    void inject(MovieListViewModel viewModel);
+//
+//    void inject(DetaiMovieViewModel viewModel);
 
 //    void inject(MoviesListActivity activity);
 
-    @ApplicationContext
-    Context getAppContext();
+  @ApplicationContext
+  Context getAppContext();
+
+  DetailMovieComponent plus(DetailMovieModule detailMovieModule);
+
+  MoviesListComponent plus(MoviesListModule moviesListModule);
+
 }

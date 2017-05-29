@@ -1,4 +1,4 @@
-package com.mysquar.sample.movies.ui.movies;
+package com.mysquar.sample.movies.ui.movies.item;
 
 import android.databinding.DataBindingUtil;
 import android.view.ViewGroup;

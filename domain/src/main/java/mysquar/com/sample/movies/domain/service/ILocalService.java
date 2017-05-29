@@ -13,5 +13,7 @@ import rx.Observable;
 public interface ILocalService {
     Observable<List<? extends IMovie>> getMovies();
     Observable<Void> saveMovies(List<? extends IMovie> movies);
+    Observable<IMovie> getDetailMovie(int id);
+    Observable<Void> saveMovie(IMovie movie);
 
 }

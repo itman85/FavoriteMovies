@@ -1,4 +1,4 @@
-package com.mysquar.sample.movies.ui.movies;
+package com.mysquar.sample.movies.ui.movies.item;
 
 import android.databinding.ObservableField;
 
@@ -19,6 +19,7 @@ public class MovieItemViewModel extends BaseViewModel {
     private IMovie movie;
 
     public MovieItemViewModel() {
+        register(this, Event.ON_TASK_ITEM_CLICK);
     }
 
     public void setMovie(IMovie movieModel){
@@ -29,6 +30,10 @@ public class MovieItemViewModel extends BaseViewModel {
     }
 
     public void onItemClick() {
-       // dispatch(Event.ON_TASK_ITEM_CLICK, mTask);
+        dispatch(Event.ON_TASK_ITEM_CLICK, this.movie);
+    }
+
+    public enum Event {
+        ON_TASK_ITEM_CLICK,
     }
 }

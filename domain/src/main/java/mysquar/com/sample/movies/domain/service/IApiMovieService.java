@@ -13,5 +13,5 @@ import rx.Observable;
 public interface IApiMovieService {
     Observable<List<? extends IMovie>> retrieveMoviesList();
 
-    Observable<IMovie> getMovie(String id);
+    Observable<? extends IMovie> getDetailMovie(int id);
 }

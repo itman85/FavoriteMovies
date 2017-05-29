@@ -24,9 +24,9 @@ public class ApiMovieServiceImpl implements IApiMovieService {
                 .map(resultModel -> resultModel.getResults());
     }
 
-
     @Override
-    public Observable<IMovie> getMovie(String id) {
-        return null;
+    public Observable<? extends IMovie> getDetailMovie(int id) {
+        return movieApiWS.geMovieById(id);
     }
+
 }

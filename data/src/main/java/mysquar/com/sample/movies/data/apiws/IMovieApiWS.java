@@ -5,6 +5,7 @@ import java.util.List;
 import mysquar.com.sample.movies.data.apiws.model.MovieModel;
 import mysquar.com.sample.movies.data.apiws.model.ResultModel;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -23,4 +24,6 @@ public interface IMovieApiWS {
 
     @GET("top_rated")
     Observable<ResultModel> geFavoriteTopMovies(@Query("page") Integer page);
+    @GET("/{id}")
+    Observable<MovieModel> geMovieById(@Path("id") Integer id);
 }

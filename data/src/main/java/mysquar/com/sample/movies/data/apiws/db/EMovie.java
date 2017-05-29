@@ -10,7 +10,7 @@ import mysquar.com.sample.movies.domain.model.IMovie;
  * Created by phannguyen on 5/25/17.
  */
 @Entity(tableName = "movies")
-public class EMovie implements IMovie {
+public class EMovie {
     @PrimaryKey
     private int id;
 

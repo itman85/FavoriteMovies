@@ -2,7 +2,9 @@ package com.mysquar.sample.movies;
 
 import android.app.Application;
 
-import com.mysquar.sample.movies.di.Injector;
+import com.mysquar.sample.movies.di.AppModule;
+import com.mysquar.sample.movies.di.component.AppComponent;
+import com.mysquar.sample.movies.di.component.DaggerAppComponent;
 
 import mysquar.com.sample.movies.data.apiws.db.AppDB;
 
@@ -12,11 +14,18 @@ import mysquar.com.sample.movies.data.apiws.db.AppDB;
 
 public class MyApp extends Application {
 
+    private AppComponent appComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        Injector.initialize(this);
+        appComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
         AppDB.init(this);
     }
 
+    public AppComponent getAppComponent() {
+        return appComponent;
+    }
 }

@@ -1,6 +1,7 @@
 package mysquar.com.sample.movies.data.apiws;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import mysquar.com.sample.movies.data.apiws.db.AppDB;
@@ -77,6 +78,31 @@ public class LocalServiceImpl implements ILocalService {
 
         //return AppDB.getDatabase().movieDao().insertOrReplaceMovies((EMovie[]) eMovies.toArray()).subscribeOn(Schedulers.io());
         return setMoviesData2(eMovies);*/
+    }
+
+    @Override
+    public Observable<IMovie> getDetailMovie(int id) {
+        return Observable.defer(() -> {
+            try {
+                EMovie movie = AppDB.getDatabase().movieDao().loadMovieById(id);
+                return Observable.just(movie);
+            } catch (Exception ex) {
+                return Observable.error(ex);
+            }
+        }).map(eMovie -> eMovie.cast());
+    }
+
+    @Override
+    public Observable<Void> saveMovie(IMovie movie) {
+        return Observable.defer(() -> {
+            try {
+                EMovie eMovie = new EMovie(movie);
+                AppDB.getDatabase().movieDao().insertOrReplaceMovies(Arrays.asList(eMovie));
+                return Observable.just(null);
+            } catch (Exception ex) {
+                return Observable.error(ex);
+            }
+        });
     }
 
     /*
