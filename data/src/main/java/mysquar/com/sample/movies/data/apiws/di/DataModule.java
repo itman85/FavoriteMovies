@@ -2,6 +2,9 @@ package mysquar.com.sample.movies.data.apiws.di;
 
 import com.google.gson.Gson;
 
+import android.app.Application;
+import android.arch.persistence.room.Room;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -11,6 +14,7 @@ import dagger.Provides;
 import mysquar.com.sample.movies.data.apiws.ApiMovieServiceImpl;
 import mysquar.com.sample.movies.data.apiws.IMovieApiWS;
 import mysquar.com.sample.movies.data.apiws.LocalServiceImpl;
+import mysquar.com.sample.movies.data.apiws.db.AppDB;
 import mysquar.com.sample.movies.domain.service.IApiMovieService;
 import mysquar.com.sample.movies.domain.service.ILocalService;
 import okhttp3.HttpUrl;
@@ -73,8 +77,14 @@ public class DataModule {
 
     @Provides
     @Singleton
-    public ILocalService provideLocalService(){
-        return  new LocalServiceImpl();
+    public ILocalService provideLocalService(AppDB appDB){
+        return  new LocalServiceImpl(appDB);
     }
 
+    @Provides
+    @Singleton
+    public AppDB provideAppDB(Application app){
+      return  Room.databaseBuilder(app.getApplicationContext(),
+          AppDB.class, "movies_db").build();
+    }
 }

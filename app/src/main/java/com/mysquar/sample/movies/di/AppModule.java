@@ -1,8 +1,8 @@
 package com.mysquar.sample.movies.di;
 
-import android.content.Context;
-
 import com.mysquar.sample.movies.MyApp;
+
+import android.app.Application;
 
 import javax.inject.Singleton;
 
@@ -24,8 +24,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    @ApplicationContext
-    public Context provideAppContext() {
+    public Application provideAppContext() {
         return mApp;
     }
 }

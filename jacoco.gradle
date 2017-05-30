@@ -1,0 +1,107 @@
+apply plugin: "jacoco"
+
+jacoco {
+  toolVersion = "0.7.8"
+}
+
+android {
+  testOptions {
+    unitTests.all {
+      jacoco {
+        includeNoLocationClasses = true
+      }
+    }
+  }
+}
+project.afterEvaluate {
+  // Grab all build types and product flavors
+  def buildTypes = android.buildTypes.collect { type -> type.name }
+  def productFlavors = android.productFlavors.collect { flavor -> flavor.name }
+
+  // When no product flavors defined, use empty
+  if (!productFlavors) {
+    productFlavors.add('')
+  }
+
+  productFlavors.each { productFlavorName ->
+    buildTypes.each { buildTypeName ->
+      def sourceName, sourcePath
+      if (!productFlavorName) {
+        sourceName = sourcePath = "${buildTypeName}"
+      } else {
+        sourceName = "${productFlavorName}${buildTypeName.capitalize()}"
+        sourcePath = "${productFlavorName}/${buildTypeName}"
+      }
+
+      def testTaskName = "test${sourceName.capitalize()}UnitTest"
+      def jacocoTaskName = "jacoco${sourceName.capitalize()}UnitTest"
+
+      // Create coverage task of form 'jacocoFlavorTypeUnitTest' depending on 'testFlavorTypeUnitTest'
+      task "${jacocoTaskName}"(type: JacocoReport, dependsOn: "$testTaskName") {
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports on the ${sourceName.capitalize()} build."
+        classDirectories = fileTree(
+            dir: "${project.buildDir}/intermediates/classes/${sourcePath}",
+            excludes: ['**/R.class',
+                       '**/R$*.class',
+                       '**/*$ViewInjector*.*',
+                       '**/**_MembersInjector**',
+                       '**/**Factory**',
+                       '**/**Module**',
+                       '**/*$ViewBinder*.*',
+                       '**/BuildConfig.*',
+                       '**/Manifest*.*',
+                       '**/databinding/**',
+                       '**/data/service/interceptor/**',
+                       '**/service/dialog/**',
+                       '**/service/resources/**',
+                       '**/service/toast/**',
+                       '**/util/binding/**',
+                       '**/util/rx/**',
+                       '**/ui/main/MainActivity.java',
+                       '**/base/**',
+                       '**/di/**',
+                       '**/BR/**',
+                       '**/**Lambda**',
+            ]
+        )
+
+
+        def coverageSourceDirs = [
+            "src/main/java",
+            "src/$productFlavorName/java",
+            "src/$buildTypeName/java"
+        ]
+        additionalSourceDirs = files(coverageSourceDirs)
+        sourceDirectories = files(coverageSourceDirs)
+        executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+
+        reports {
+          xml.enabled = true
+          html.enabled = true
+        }
+
+        def renamedFilesMap = [:]
+
+        // Hacky fix for issue: https://code.google.com/p/android/issues/detail?id=69174.
+        // Rename files with '$$' before generating report, and then rename back after
+        doFirst {
+          new File("${project.buildDir}/intermediates/classes/${sourcePath}").eachFileRecurse { file ->
+            if (file.name.contains('$$')) {
+              def oldPath = file.path
+              def newPath = oldPath.replace('$$', '$')
+              file.renameTo(newPath)
+              renamedFilesMap[newPath] = oldPath
+            }
+          }
+        }
+        doLast {
+          renamedFilesMap.each() {
+            newPath, oldPath ->
+              new File(newPath).renameTo(oldPath)
+          }
+        }
+      }
+    }
+  }
+}

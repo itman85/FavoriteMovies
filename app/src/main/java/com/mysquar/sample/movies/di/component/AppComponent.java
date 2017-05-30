@@ -1,13 +1,10 @@
 package com.mysquar.sample.movies.di.component;
 
 import com.mysquar.sample.movies.di.AppModule;
-import com.mysquar.sample.movies.di.ApplicationContext;
 import com.mysquar.sample.movies.ui.detail.di.DetailMovieComponent;
 import com.mysquar.sample.movies.ui.detail.di.DetailMovieModule;
 import com.mysquar.sample.movies.ui.movies.di.MoviesListComponent;
 import com.mysquar.sample.movies.ui.movies.di.MoviesListModule;
-
-import android.content.Context;
 
 import javax.inject.Singleton;
 
@@ -29,11 +26,7 @@ public interface AppComponent {
 
 //    void inject(MoviesListActivity activity);
 
-  @ApplicationContext
-  Context getAppContext();
-
   DetailMovieComponent plus(DetailMovieModule detailMovieModule);
 
   MoviesListComponent plus(MoviesListModule moviesListModule);
-
 }

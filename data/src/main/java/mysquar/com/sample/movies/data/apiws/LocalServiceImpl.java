@@ -16,11 +16,16 @@ import rx.Observable;
  */
 
 public class LocalServiceImpl implements ILocalService {
+    AppDB mAppDB;
+
+    public LocalServiceImpl(AppDB appDB){
+        mAppDB = appDB;
+    }
     @Override
     public Observable<List<? extends IMovie>> getMovies() {
         return Observable.defer(() -> {
            try {
-               List<EMovie> movies = AppDB.getDatabase().movieDao().loadAllMovies();
+               List<EMovie> movies = mAppDB.movieDao().loadAllMovies();
                return Observable.just(movies);
            } catch (Exception ex) {
                return Observable.error(ex);
@@ -53,7 +58,7 @@ public class LocalServiceImpl implements ILocalService {
                 for(IMovie iMovie:movies){
                     eMovies.add(new EMovie(iMovie));
                 }
-                AppDB.getDatabase().movieDao().insertOrReplaceMovies(eMovies);
+                mAppDB.movieDao().insertOrReplaceMovies(eMovies);
                 return Observable.just(null);
             } catch (Exception ex) {
                 return Observable.error(ex);
@@ -84,7 +89,7 @@ public class LocalServiceImpl implements ILocalService {
     public Observable<IMovie> getDetailMovie(int id) {
         return Observable.defer(() -> {
             try {
-                EMovie movie = AppDB.getDatabase().movieDao().loadMovieById(id);
+                EMovie movie = mAppDB.movieDao().loadMovieById(id);
                 return Observable.just(movie);
             } catch (Exception ex) {
                 return Observable.error(ex);
@@ -97,7 +102,7 @@ public class LocalServiceImpl implements ILocalService {
         return Observable.defer(() -> {
             try {
                 EMovie eMovie = new EMovie(movie);
-                AppDB.getDatabase().movieDao().insertOrReplaceMovies(Arrays.asList(eMovie));
+                mAppDB.movieDao().insertOrReplaceMovies(Arrays.asList(eMovie));
                 return Observable.just(null);
             } catch (Exception ex) {
                 return Observable.error(ex);

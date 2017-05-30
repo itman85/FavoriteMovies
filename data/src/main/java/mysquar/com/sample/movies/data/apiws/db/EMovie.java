@@ -1,6 +1,7 @@
 package mysquar.com.sample.movies.data.apiws.db;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import mysquar.com.sample.movies.data.apiws.model.MovieModel;
@@ -19,11 +20,19 @@ public class EMovie {
 
     public EMovie() {}
 
+    @Ignore
     public EMovie(IMovie movieModel) {
         this.title = movieModel.getTitle();
         this.description = movieModel.getDescription();
         this.id = movieModel.getId();
     }
+    @Ignore
+    public EMovie(String description, int id, String title) {
+        this.title = title;
+        this.description = description;
+        this.id = id;
+    }
+
 
     public IMovie cast(){
         return new MovieModel(description,id,title);
