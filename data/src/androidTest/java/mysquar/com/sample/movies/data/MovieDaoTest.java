@@ -21,7 +21,7 @@ public class MovieDaoTest extends DbTest {
   public void insertAndQuery_success() throws Exception{
     List<EMovie> movies = new ArrayList<>();
     for(int i=1;i<5;i++){
-      movies.add(new EMovie("description"+i,i,"title"+i));
+      movies.add(new EMovie("description"+i,i,"title"+i,""));
     }
     mAppDB.movieDao().insertOrReplaceMovies(movies);
     //

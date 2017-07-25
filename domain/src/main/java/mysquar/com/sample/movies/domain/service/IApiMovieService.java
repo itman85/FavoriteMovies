@@ -14,4 +14,7 @@ public interface IApiMovieService {
     Observable<List<? extends IMovie>> retrieveMoviesList();
 
     Observable<? extends IMovie> getDetailMovie(int id);
+
+    Observable<List<? extends IMovie>> loadMoreMoviesList(int page);
+
 }

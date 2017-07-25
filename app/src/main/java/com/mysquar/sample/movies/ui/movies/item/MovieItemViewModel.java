@@ -1,8 +1,8 @@
 package com.mysquar.sample.movies.ui.movies.item;
 
-import android.databinding.ObservableField;
-
 import com.mysquar.sample.movies.ui.base.BaseViewModel;
+
+import android.databinding.ObservableField;
 
 import mysquar.com.sample.movies.domain.model.IMovie;
 
@@ -15,6 +15,8 @@ public class MovieItemViewModel extends BaseViewModel {
     public ObservableField<String> description = new ObservableField<>();
 
     public ObservableField<String> title = new ObservableField<>();
+    public ObservableField<String> number = new ObservableField<>();
+    public ObservableField<String> posterUrl = new ObservableField<>();
 
     private IMovie movie;
 
@@ -26,6 +28,8 @@ public class MovieItemViewModel extends BaseViewModel {
         this.movie = movieModel;
         description.set(this.movie.getDescription());
         title.set(this.movie.getTitle());
+        number.set(this.movie.getId()+"");
+        posterUrl.set("http://image.tmdb.org/t/p/w185/"+movieModel.getPosterUrl());
 
     }
 

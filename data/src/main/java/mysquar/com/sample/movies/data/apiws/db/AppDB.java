@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 /**
  * Created by phannguyen on 5/25/17.
  */
-@Database(entities = {EMovie.class}, version = 1)
+@Database(entities = {EMovie.class}, version = 2)
 public abstract class AppDB extends RoomDatabase{
     //private static AppDB INSTANCE;
     //private static Context _context;

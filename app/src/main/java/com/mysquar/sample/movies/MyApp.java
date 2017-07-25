@@ -1,5 +1,6 @@
 package com.mysquar.sample.movies;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.mysquar.sample.movies.di.AppModule;
 import com.mysquar.sample.movies.di.component.AppComponent;
 import com.mysquar.sample.movies.di.component.DaggerAppComponent;
@@ -21,6 +22,7 @@ public class MyApp extends Application {
                 .appModule(new AppModule(this))
                 .build();
         //AppDB.init(this);
+        Fresco.initialize(this);
     }
 
     public AppComponent getAppComponent() {

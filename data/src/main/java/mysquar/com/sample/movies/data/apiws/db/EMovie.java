@@ -17,6 +17,7 @@ public class EMovie {
 
     private String title;
     private String description;
+    private String posterUrl;
 
     public EMovie() {}
 
@@ -25,17 +26,19 @@ public class EMovie {
         this.title = movieModel.getTitle();
         this.description = movieModel.getDescription();
         this.id = movieModel.getId();
+        this.posterUrl = movieModel.getPosterUrl();
     }
     @Ignore
-    public EMovie(String description, int id, String title) {
+    public EMovie(String description, int id, String title,String posterUrl) {
         this.title = title;
         this.description = description;
         this.id = id;
+        this.posterUrl = posterUrl;
     }
 
 
     public IMovie cast(){
-        return new MovieModel(description,id,title);
+        return new MovieModel(description,id,title,posterUrl);
     }
 
     public int getId() {
@@ -60,5 +63,13 @@ public class EMovie {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPosterUrl() {
+        return posterUrl;
+    }
+
+    public void setPosterUrl(String posterUrl) {
+        this.posterUrl = posterUrl;
     }
 }

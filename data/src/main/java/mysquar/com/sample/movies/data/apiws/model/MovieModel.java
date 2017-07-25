@@ -73,15 +73,22 @@ public class MovieModel implements IMovie {
         return id;
     }
 
-
-    public MovieModel(String overview, String title) {
-        this.overview = overview;
-        this.title = title;
+    @Override
+    public String getPosterUrl() {
+        return this.posterPath;
     }
 
-    public MovieModel(String overview, Integer id, String title) {
+
+    public MovieModel(String overview, String title,String posterPath) {
+        this.overview = overview;
+        this.title = title;
+        this.posterPath = posterPath;
+    }
+
+    public MovieModel(String overview, Integer id, String title,String posterPath) {
         this.overview = overview;
         this.id = id;
         this.title = title;
+        this.posterPath = posterPath;
     }
 }

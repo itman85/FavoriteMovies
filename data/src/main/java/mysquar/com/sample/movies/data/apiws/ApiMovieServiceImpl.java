@@ -29,4 +29,10 @@ public class ApiMovieServiceImpl implements IApiMovieService {
         return movieApiWS.geMovieById(id);
     }
 
+    @Override
+    public Observable<List<? extends IMovie>> loadMoreMoviesList(int page) {
+        return movieApiWS.geFavoriteTopMovies(page)
+            .map(resultModel -> resultModel.getResults());
+    }
+
 }

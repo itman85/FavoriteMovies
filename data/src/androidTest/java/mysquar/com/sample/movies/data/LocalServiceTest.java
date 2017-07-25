@@ -34,7 +34,7 @@ public class LocalServiceTest extends DbTest {
   public void testSaveAndQueryData_success() throws Exception {
     List<IMovie> movies = new ArrayList<>();
     for (int i = 1; i < 5; i++) {
-      movies.add(new MovieModel("description" + i, i, "title" + i));
+      movies.add(new MovieModel("description" + i, i, "title" + i,""));
     }
 
     TestSubscriber<IMovie> testSubscriber = TestSubscriber.create();

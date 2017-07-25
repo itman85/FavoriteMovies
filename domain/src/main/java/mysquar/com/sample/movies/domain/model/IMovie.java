@@ -8,4 +8,5 @@ public interface IMovie {
     String getTitle();
     String getDescription();
     int getId();
+    String getPosterUrl();
 }

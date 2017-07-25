@@ -1,10 +1,12 @@
 package com.mysquar.sample.movies.ui.movies.item;
 
-import android.databinding.DataBindingUtil;
-import android.view.ViewGroup;
-
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.mysquar.sample.movies.R;
 import com.mysquar.sample.movies.databinding.MovieItemBinding;
+
+import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
+import android.view.ViewGroup;
 
 import me.henrytao.mvvmlifecycle.MVVMObserver;
 import me.henrytao.mvvmlifecycle.recyclerview.RecyclerViewBindingViewHolder;
@@ -31,6 +33,15 @@ public class MovieItemViewHolder extends RecyclerViewBindingViewHolder<IMovie> {
     public void bind(IMovie data) {
         mViewModel.setMovie(data);
         mBinding.executePendingBindings();
+        //Uri uri = Uri.parse("http://image.tmdb.org/t/p/w185/"+data.getPosterUrl());
+        //SimpleDraweeView draweeView = (SimpleDraweeView) itemView.findViewById(R.id.movie_poster_image);
+        //draweeView.setImageURI(uri);
+    }
+
+    @BindingAdapter({"draweeImageUrl"})
+    public static void loadImage(SimpleDraweeView view, String imageUrl) {
+        //Uri uri = Uri.parse("http://image.tmdb.org/t/p/w185/"+data.getPosterUrl());
+        view.setImageURI(imageUrl);
     }
 
     @Override
